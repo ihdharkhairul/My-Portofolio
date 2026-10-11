@@ -401,43 +401,43 @@ export default function Portfolio() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.35 }}
-            className="space-y-6 sm:space-y-8 w-full"
+            className="space-y-5 sm:space-y-8 w-full min-w-0 max-w-full"
           >
             {techStackData.map((categoryGroup) => (
               <div
                 key={categoryGroup.category}
-                className="p-4 xs:p-6 sm:p-8 rounded-3xl bg-[#070e22]/80 backdrop-blur-md border border-[#2c67ed]/20 shadow-[0_0_25px_rgba(44,103,237,0.1)] w-full"
+                className="p-3.5 xs:p-5 sm:p-7 rounded-2xl xs:rounded-3xl bg-[#070e22]/85 backdrop-blur-md border border-[#2c67ed]/20 shadow-[0_0_25px_rgba(44,103,237,0.1)] w-full min-w-0 max-w-full overflow-hidden"
               >
-                <div className="mb-5 sm:mb-6">
-                  <h3 className="text-lg xs:text-xl sm:text-2xl font-heading font-bold text-white flex items-center gap-2">
+                <div className="mb-4 sm:mb-6 min-w-0 max-w-full">
+                  <h3 className="text-base xs:text-lg sm:text-2xl font-heading font-bold text-white flex items-center gap-2 flex-wrap">
                     <span className="w-2 h-2 rounded-full bg-[#2c67ed] shadow-[0_0_8px_#2c67ed] shrink-0" />
-                    {categoryGroup.category}
+                    <span className="break-words min-w-0">{categoryGroup.category}</span>
                   </h3>
-                  <p className="text-slate-400 text-xs sm:text-sm mt-1">
+                  <p className="text-slate-400 text-xs sm:text-sm mt-1 break-words">
                     {categoryGroup.description}
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 xs:gap-3 sm:gap-4 w-full">
+                <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 xs:gap-3 sm:gap-4 w-full min-w-0 max-w-full">
                   {categoryGroup.skills.map((skill) => {
                     const IconComponent = iconMap[skill.icon] || Code2;
                     return (
                       <motion.div
                         key={skill.name}
                         whileHover={{ y: -4, scale: 1.02 }}
-                        className="p-3 xs:p-4 rounded-2xl bg-[#040816]/90 border border-white/5 hover:border-[#2c67ed]/50 hover:shadow-[0_0_20px_rgba(44,103,237,0.25)] transition-all flex flex-col items-center text-center group cursor-default"
+                        className="p-2.5 xs:p-3 sm:p-4 rounded-xl xs:rounded-2xl bg-[#040816]/90 border border-white/5 hover:border-[#2c67ed]/50 hover:shadow-[0_0_20px_rgba(44,103,237,0.25)] transition-all flex flex-col items-center justify-between text-center group cursor-default w-full min-w-0 max-w-full overflow-hidden"
                       >
-                        <div className={`w-10 h-10 xs:w-12 xs:h-12 rounded-xl mb-2.5 flex items-center justify-center bg-gradient-to-tr ${skill.badgeColor} p-[1px] shadow-[0_0_15px_rgba(44,103,237,0.3)] group-hover:shadow-[0_0_25px_rgba(44,103,237,0.6)] shrink-0`}>
+                        <div className={`w-9 h-9 xs:w-11 xs:h-11 sm:w-12 sm:h-12 rounded-xl mb-2 flex items-center justify-center bg-gradient-to-tr ${skill.badgeColor} p-[1px] shadow-[0_0_15px_rgba(44,103,237,0.3)] group-hover:shadow-[0_0_25px_rgba(44,103,237,0.6)] shrink-0`}>
                           <div className="w-full h-full bg-[#030712] rounded-[11px] flex items-center justify-center">
-                            <IconComponent className="w-4 xs:w-5 h-4 xs:h-5 text-white group-hover:scale-110 transition-transform" />
+                            <IconComponent className="w-4 xs:w-5 h-4 xs:h-5 text-white group-hover:scale-110 transition-transform shrink-0" />
                           </div>
                         </div>
 
-                        <span className="text-white text-xs xs:text-sm font-semibold mb-1 group-hover:text-[#93c5fd] transition-colors leading-tight">
+                        <span className="w-full text-white text-[11px] xs:text-xs sm:text-sm font-semibold mb-1.5 group-hover:text-[#93c5fd] transition-colors leading-tight break-words text-center min-w-0">
                           {skill.name}
                         </span>
 
-                        <span className="text-[9px] xs:text-[10px] font-medium px-1.5 xs:px-2 py-0.5 rounded-full bg-white/5 text-slate-400 group-hover:bg-[#2c67ed]/20 group-hover:text-[#38bdf8] transition-colors">
+                        <span className="max-w-full truncate text-[9px] xs:text-[10px] font-medium px-1.5 xs:px-2 py-0.5 rounded-full bg-white/5 text-slate-400 group-hover:bg-[#2c67ed]/20 group-hover:text-[#38bdf8] transition-colors leading-normal block text-center">
                           {skill.level}
                         </span>
                       </motion.div>

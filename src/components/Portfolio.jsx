@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FolderGit2, 
@@ -54,6 +54,18 @@ export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
+
+  // Prevent background scroll when modal is active
+  useEffect(() => {
+    if (selectedProject || selectedCertificate) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedProject, selectedCertificate]);
 
   const tabs = [
     { id: 'projects', label: 'Projects', icon: FolderGit2, count: projectsData.length },

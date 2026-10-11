@@ -83,6 +83,18 @@
   text-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
 }
 
+/* Dark mode input autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #f3f4f6;
+  -webkit-box-shadow: 0 0 0px 1000px #040816 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 /* Subtle pulse animation for background nebula */
 @keyframes nebulaPulse {
   0%, 100% {

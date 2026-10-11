@@ -100,7 +100,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="min-h-[3rem] sm:min-h-[4rem] flex items-center justify-center mb-4 sm:mb-6 px-2 w-full"
+          className="min-h-[3.75rem] xs:min-h-[4rem] sm:min-h-[4.5rem] md:min-h-[4rem] flex items-center justify-center mb-4 sm:mb-6 px-2 w-full"
         >
           <p className="text-base xs:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading font-semibold text-slate-200 text-center leading-snug">
             Saya seorang{' '}

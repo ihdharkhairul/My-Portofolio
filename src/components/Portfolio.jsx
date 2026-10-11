@@ -171,16 +171,16 @@ export default function Portfolio() {
             transition={{ duration: 0.35 }}
             className="w-full"
           >
-            {/* Category Filter Pills */}
+            {/* Category Filter Pills (Auto-wrap responsive layout without horizontal scroll) */}
             <div className="w-full max-w-4xl mx-auto mb-8 sm:mb-10 px-1">
-              <div className="flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-2.5 overflow-x-auto scrollbar-none py-1.5 px-1">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 py-1 px-1">
                 {projectCategories.map((cat) => (
                   <button
                     key={cat}
                     type="button"
                     onClick={() => setSelectedCategory(cat)}
                     className={`
-                      shrink-0 whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer border
+                      px-3 xs:px-3.5 sm:px-4 py-1.5 xs:py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer border text-center
                       ${selectedCategory === cat
                         ? 'bg-[#2c67ed]/25 text-[#93c5fd] border-[#2c67ed] shadow-[0_0_15px_rgba(44,103,237,0.4)] font-semibold'
                         : 'bg-[#081026]/80 text-slate-400 border-white/10 hover:border-white/25 hover:text-white'

@@ -122,39 +122,41 @@ export default function Portfolio() {
       </div>
 
       {/* Main Tabs Navigation */}
-      <div className="flex items-center justify-center mb-8 sm:mb-12 w-full">
-        <div className="w-full max-w-md sm:max-w-lg flex p-1 sm:p-1.5 rounded-2xl sm:rounded-full bg-[#070e22]/90 backdrop-blur-xl border border-[#2c67ed]/30 shadow-[0_0_25px_rgba(44,103,237,0.22)]">
-          {tabs.map((tab) => {
-            const Icon = tab.icon;
-            const isActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveTab(tab.id)}
-                className={`
-                  relative flex-1 flex items-center justify-center gap-1.5 xs:gap-2 px-2.5 xs:px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer
-                  ${isActive 
-                    ? 'text-white' 
-                    : 'text-slate-400 hover:text-white'
-                  }
-                `}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activePortfolioTab"
-                    className="absolute inset-0 rounded-xl sm:rounded-full bg-gradient-to-r from-[#2c67ed] to-[#1e40af] shadow-[0_0_20px_rgba(44,103,237,0.6)] -z-10"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <Icon className={`w-3.5 sm:w-4 h-3.5 sm:h-4 shrink-0 ${isActive ? 'text-cyan-300' : 'text-slate-400'}`} />
-                <span className="truncate">{tab.label}</span>
-                <span className={`hidden xs:inline-block px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] font-mono shrink-0 ${isActive ? 'bg-white/20 text-white' : 'bg-white/5 text-slate-400'}`}>
-                  {tab.count}
-                </span>
-              </button>
-            );
-          })}
+      <div className="w-full max-w-xl mx-auto mb-8 sm:mb-12 px-1">
+        <div className="p-1 sm:p-1.5 rounded-2xl sm:rounded-full bg-[#070e22]/90 backdrop-blur-xl border border-[#2c67ed]/30 shadow-[0_0_25px_rgba(44,103,237,0.22)] overflow-x-auto scrollbar-none">
+          <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 min-w-max sm:min-w-0 w-full px-1 py-0.5">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`
+                    relative flex-1 sm:flex-initial shrink-0 flex items-center justify-center gap-2 px-3.5 xs:px-4 sm:px-5 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap
+                    ${isActive 
+                      ? 'text-white' 
+                      : 'text-slate-400 hover:text-white'
+                    }
+                  `}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activePortfolioTab"
+                      className="absolute inset-0 rounded-xl sm:rounded-full bg-gradient-to-r from-[#2c67ed] to-[#1e40af] shadow-[0_0_20px_rgba(44,103,237,0.6)] -z-10"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-cyan-300' : 'text-slate-400'}`} />
+                  <span>{tab.label}</span>
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono shrink-0 ${isActive ? 'bg-white/20 text-white' : 'bg-white/5 text-slate-400'}`}>
+                    {tab.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -170,23 +172,25 @@ export default function Portfolio() {
             className="w-full"
           >
             {/* Category Filter Pills */}
-            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 w-full px-1">
-              {projectCategories.map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`
-                    px-3 xs:px-4 py-1.5 rounded-full text-[11px] xs:text-xs font-medium transition-all duration-200 cursor-pointer
-                    ${selectedCategory === cat
-                      ? 'bg-[#2c67ed]/25 text-[#93c5fd] border border-[#2c67ed] shadow-[0_0_15px_rgba(44,103,237,0.4)]'
-                      : 'bg-[#081026]/70 text-slate-400 border border-white/5 hover:border-white/20 hover:text-white'
-                    }
-                  `}
-                >
-                  {cat === 'All' ? 'Semua Proyek' : cat}
-                </button>
-              ))}
+            <div className="w-full max-w-4xl mx-auto mb-8 sm:mb-10 px-1">
+              <div className="flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-2.5 overflow-x-auto scrollbar-none py-1.5 px-1">
+                {projectCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`
+                      shrink-0 whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer border
+                      ${selectedCategory === cat
+                        ? 'bg-[#2c67ed]/25 text-[#93c5fd] border-[#2c67ed] shadow-[0_0_15px_rgba(44,103,237,0.4)] font-semibold'
+                        : 'bg-[#081026]/80 text-slate-400 border-white/10 hover:border-white/25 hover:text-white'
+                      }
+                    `}
+                  >
+                    {cat === 'All' ? 'Semua Proyek' : cat}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Projects Grid */}
@@ -197,20 +201,20 @@ export default function Portfolio() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.06 }}
-                  className="group rounded-3xl overflow-hidden bg-[#070e22]/80 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 shadow-[0_0_20px_rgba(44,103,237,0.08)] hover:shadow-[0_0_35px_rgba(44,103,237,0.25)] transition-all duration-300 flex flex-col justify-between w-full"
+                  className="group rounded-3xl overflow-hidden bg-[#070e22]/80 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 shadow-[0_0_20px_rgba(44,103,237,0.08)] hover:shadow-[0_0_35px_rgba(44,103,237,0.25)] transition-all duration-300 flex flex-col justify-between w-full h-auto"
                 >
                   {/* Thumbnail Preview */}
-                  <div className="relative aspect-video overflow-hidden bg-slate-900 w-full">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-slate-900 w-full shrink-0">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#070e22] via-[#070e22]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#070e22] via-[#070e22]/40 to-transparent pointer-events-none" />
                     
                     {/* Featured / Category Badge */}
-                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap">
                       <span className="px-2.5 py-0.5 rounded-full text-[10px] xs:text-[11px] font-semibold bg-[#030712]/85 backdrop-blur-md text-[#93c5fd] border border-[#2c67ed]/40">
                         {project.category}
                       </span>
@@ -234,11 +238,11 @@ export default function Portfolio() {
 
                   {/* Project Info */}
                   <div className="p-4 xs:p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <h3 className="text-lg xs:text-xl font-heading font-bold text-white mb-1.5 group-hover:text-[#93c5fd] transition-colors line-clamp-1">
+                    <div className="min-w-0">
+                      <h3 className="text-base xs:text-lg sm:text-xl font-heading font-bold text-white mb-2 group-hover:text-[#93c5fd] transition-colors leading-snug break-words">
                         {project.title}
                       </h3>
-                      <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-2">
+                      <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4 break-words">
                         {project.description}
                       </p>
 
@@ -247,7 +251,7 @@ export default function Portfolio() {
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-2 py-0.5 rounded-md text-[10px] xs:text-[11px] font-mono bg-[#2c67ed]/10 text-blue-300 border border-[#2c67ed]/20"
+                            className="px-2.5 py-0.5 rounded-md text-[10px] xs:text-[11px] font-mono bg-[#2c67ed]/10 text-blue-300 border border-[#2c67ed]/20"
                           >
                             {tag}
                           </span>
@@ -256,17 +260,17 @@ export default function Portfolio() {
                     </div>
 
                     {/* Links & CTA */}
-                    <div className="flex items-center justify-between pt-3.5 border-t border-white/5 gap-2">
+                    <div className="flex flex-wrap items-center justify-between pt-3.5 border-t border-white/5 gap-2 mt-auto">
                       <button
                         type="button"
                         onClick={() => setSelectedProject(project)}
-                        className="text-xs font-semibold text-[#38bdf8] hover:text-white flex items-center gap-1 transition-colors cursor-pointer"
+                        className="text-xs font-semibold text-[#38bdf8] hover:text-white flex items-center gap-1 transition-colors cursor-pointer py-1"
                       >
                         <span>Detail Info</span>
                         <Eye className="w-3.5 h-3.5 shrink-0" />
                       </button>
 
-                      <div className="flex items-center gap-1.5 xs:gap-2">
+                      <div className="flex items-center gap-2">
                         <a
                           href={project.github}
                           target="_blank"
@@ -280,7 +284,7 @@ export default function Portfolio() {
                           href={project.liveDemo}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold text-white bg-[#2c67ed] hover:bg-[#1d4ed8] shadow-[0_0_15px_rgba(44,103,237,0.4)] transition-all hover:scale-105 shrink-0"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-white bg-[#2c67ed] hover:bg-[#1d4ed8] shadow-[0_0_15px_rgba(44,103,237,0.4)] transition-all hover:scale-105 shrink-0"
                         >
                           <span>Demo</span>
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -310,7 +314,7 @@ export default function Portfolio() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="group rounded-3xl overflow-hidden bg-[#070e22]/80 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 shadow-[0_0_20px_rgba(44,103,237,0.08)] hover:shadow-[0_0_35px_rgba(44,103,237,0.22)] transition-all flex flex-col justify-between w-full"
+                className="group rounded-3xl overflow-hidden bg-[#070e22]/80 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 shadow-[0_0_20px_rgba(44,103,237,0.08)] hover:shadow-[0_0_35px_rgba(44,103,237,0.22)] transition-all flex flex-col justify-between w-full h-auto"
               >
                 <div>
                   {/* Certificate Image Banner */}
@@ -321,7 +325,7 @@ export default function Portfolio() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#070e22] via-[#070e22]/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#070e22] via-[#070e22]/50 to-transparent pointer-events-none" />
                     
                     {/* Issuer Tag */}
                     <div className="absolute top-2.5 left-2.5">
@@ -368,7 +372,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Footer action */}
-                <div className="px-4 xs:px-5 sm:px-6 pb-5 pt-2 flex items-center justify-between border-t border-white/5 gap-2">
+                <div className="px-4 xs:px-5 sm:px-6 pb-5 pt-2 flex flex-wrap items-center justify-between border-t border-white/5 gap-2 mt-auto">
                   <button
                     type="button"
                     onClick={() => setSelectedCertificate(cert)}

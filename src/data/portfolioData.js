@@ -1,0 +1,317 @@
+export const personalData = {
+  name: "Alvaro Reinaldi",
+  title: "Junior Developer & Space Tech Explorer",
+  roles: [
+    "Junior Developer",
+    "Tech Enthusiast",
+    "Frontend Explorer",
+    "Creative Problem Solver"
+  ],
+  bio: "Seorang pengembang web pemula yang bersemangat menjelajahi cakrawala teknologi modern. Senang merakit antarmuka web yang interaktif, cepat, dan responsif dengan perhatian tinggi terhadap estetika dan pengalaman pengguna. Terus belajar dan bertumbuh dalam ekosistem JavaScript, React, dan arsitektur web modern.",
+  location: "Jakarta, Indonesia 🌏",
+  availability: "Terbuka untuk Magang, Junior Role & Freelance",
+  avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80", // High quality portrait with modern aesthetic
+  resumeUrl: "#",
+  email: "alvaro.dev@example.com",
+};
+
+export const statsData = [
+  {
+    number: "15+",
+    label: "Project Selesai",
+    desc: "Aplikasi web & mobile",
+  },
+  {
+    number: "25+",
+    label: "Repositori GitHub",
+    desc: "Open source & personal",
+  },
+  {
+    number: "8+",
+    label: "Sertifikasi Resmi",
+    desc: "Dicoding, FCC & Google",
+  },
+  {
+    number: "2+",
+    label: "Tahun Eksplorasi",
+    desc: "Belajar coding konsisten",
+  },
+];
+
+export const educationData = [
+  {
+    id: "edu-1",
+    institution: "Universitas Bina Nusantara (BINUS)",
+    degree: "S1 Teknik Informatika / Computer Science",
+    period: "2022 - Sekarang (Semester 5)",
+    grade: "IPK 3.82 / 4.00",
+    description: "Fokus pada Rekayasa Perangkat Lunak, Struktur Data & Algoritma, Pemrograman Web, dan Basis Data Terdistribusi.",
+    badge: "Pendidikan Tinggi",
+  },
+  {
+    id: "edu-2",
+    institution: "Bangkit Academy by Google, GoTo, Traveloka",
+    degree: "Cloud & Web Engineering Cohort",
+    period: "2024",
+    grade: "Distinction Graduate",
+    description: "Pelatihan intensif arsitektur cloud, pembuatan RESTful API, dan pengembangan aplikasi berbasis microservices.",
+    badge: "Studi Independen",
+  },
+  {
+    id: "edu-3",
+    institution: "SMK Negeri 1 Jakarta",
+    degree: "Rekayasa Perangkat Lunak (RPL)",
+    period: "2019 - 2022",
+    grade: "Lulusan Terbaik Jurusan RPL",
+    description: "Mempelajari dasar algoritma pemrograman, OOP, HTML/CSS, JavaScript dasar, MySQL, dan pemeliharaan software.",
+    badge: "Sekolah Menengah Kejuruan",
+  },
+];
+
+export const experienceData = [
+  {
+    id: "exp-1",
+    role: "Junior Frontend Developer Intern",
+    company: "PT Digital Solusi Nusantara",
+    period: "Feb 2024 - Agu 2024 (7 Bulan)",
+    type: "Internship",
+    description: "Mengembangkan antarmuka modul dashboard internal menggunakan React, Tailwind CSS, dan REST API. Mengoptimalkan performa loading page hingga 35% lebih efisien.",
+    highlights: [
+      "Mengembangkan 12+ reusable UI components dengan Storybook & Tailwind CSS",
+      "Berkolaborasi erat bersama tim UI/UX dan Backend dalam siklus Agile Scrum sprint dua mingguan",
+      "Memperbaiki bug responsivitas pada perangkat mobile dan tablet",
+    ],
+  },
+  {
+    id: "exp-2",
+    role: "Web Development Lead",
+    company: "Himpunan Mahasiswa Teknik Informatika (HIMTI)",
+    period: "2023 - 2024",
+    type: "Organisasi Kampus",
+    description: "Memimpin divisi pengembangan web untuk portal informasi resmi acara tahunan TechFest yang dikunjungi oleh lebih dari 5.000 peserta mahasiswa.",
+    highlights: [
+      "Merancang landing page interaktif dengan pendaftaran peserta otomatis",
+      "Mengkoordinir 6 anggota developer dalam pembagian tugas GitHub",
+    ],
+  },
+  {
+    id: "exp-3",
+    role: "Freelance Web Developer",
+    company: "Self-Employed",
+    period: "2023 - Sekarang",
+    type: "Freelance",
+    description: "Membantu UMKM dan komunitas lokal dalam membuat landing page promosi dan company profile yang elegan, cepat, dan mobile-friendly.",
+    highlights: [
+      "Menyelesaikan 6 proyek website klien dengan tingkat kepuasan 100%",
+      "Integrasi SEO dasar dan integrasi WhatsApp Direct Chat",
+    ],
+  },
+];
+
+export const projectsData = [
+  {
+    id: "proj-1",
+    title: "CosmoSphere - Space Mission Tracker",
+    category: "Fullstack / Web App",
+    description: "Aplikasi pelacak orbit satelit dan peluncuran roket real-time yang terhubung dengan NASA Open APIs dengan visualisasi orbit interaktif 3D.",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    tags: ["React", "Tailwind CSS", "NASA API", "Framer Motion", "Chart.js"],
+    liveDemo: "https://example.com/cosmosphere",
+    github: "https://github.com/example/cosmosphere",
+    featured: true,
+  },
+  {
+    id: "proj-2",
+    title: "AuraStore - Minimalist Tech E-Commerce",
+    category: "E-Commerce",
+    description: "Platform e-commerce gadget futuristik dengan fitur cart manajemen Zustand, filter produk instan, pencarian cerdas, dan checkout dummy.",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+    tags: ["React", "Tailwind CSS", "Zustand", "Stripe Mock", "Lucide"],
+    liveDemo: "https://example.com/aurastore",
+    github: "https://github.com/example/aurastore",
+    featured: true,
+  },
+  {
+    id: "proj-3",
+    title: "NebulaTask - AI Productivity Kanban",
+    category: "Productivity",
+    description: "Aplikasi manajemen tugas Kanban bergaya dark glassmorphism dengan drag-and-drop halus, tagging prioritas, dan penyimpanan lokal persisten.",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+    tags: ["React", "Tailwind CSS", "DnD-Kit", "LocalStorage", "Framer Motion"],
+    liveDemo: "https://example.com/nebulatask",
+    github: "https://github.com/example/nebulatask",
+    featured: true,
+  },
+  {
+    id: "proj-4",
+    title: "DevPulse - Developer Community Forum",
+    category: "Fullstack",
+    description: "Forum diskusi koding dengan fitur markdown code preview, voting diskusi, bookmark tips pemrograman, dan antarmuka bertema cyberpunk.",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+    tags: ["React", "Express.js", "MongoDB", "Tailwind CSS"],
+    liveDemo: "https://example.com/devpulse",
+    github: "https://github.com/example/devpulse",
+    featured: false,
+  },
+  {
+    id: "proj-5",
+    title: "WeatherCosmos - Global Atmospheric Radar",
+    category: "Utility / Web App",
+    description: "Dashboard ramalan cuaca interaktif dengan grafik suhu 7 hari ke depan, indeks UV, kualitas udara, dan background dinamis sesuai kondisi langit.",
+    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=800&q=80",
+    tags: ["React", "OpenWeatherMap", "Tailwind CSS", "Axios"],
+    liveDemo: "https://example.com/weathercosmos",
+    github: "https://github.com/example/weathercosmos",
+    featured: false,
+  },
+  {
+    id: "proj-6",
+    title: "CyberCrypt - Crypto Portfolio Tracker",
+    category: "Fintech",
+    description: "Pemantau harga mata uang kripto real-time dengan CoinGecko API, grafik candlestick, konverter mata uang, dan kalkulator profit portofolio.",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80",
+    tags: ["React", "CoinGecko API", "Tailwind CSS", "Recharts"],
+    liveDemo: "https://example.com/cybercrypt",
+    github: "https://github.com/example/cybercrypt",
+    featured: false,
+  },
+];
+
+export const certificatesData = [
+  {
+    id: "cert-1",
+    title: "Belajar Membuat Aplikasi Web dengan React",
+    issuer: "Dicoding Indonesia",
+    date: "Mei 2024",
+    credentialId: "DICODING-REACT-98213",
+    skills: ["React", "Component Lifecycle", "State Management", "Hooks"],
+    verifyUrl: "https://www.dicoding.com/certificates/example",
+    image: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    id: "cert-2",
+    title: "Front End Development Libraries",
+    issuer: "freeCodeCamp",
+    date: "Maret 2024",
+    credentialId: "FCC-FED-77123",
+    skills: ["Bootstrap", "Sass", "React", "Redux", "jQuery"],
+    verifyUrl: "https://freecodecamp.org/certification/example",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    id: "cert-3",
+    title: "Google Cloud Computing Foundations",
+    issuer: "Google Cloud Skills Boost",
+    date: "Desember 2023",
+    credentialId: "GCP-FND-44910",
+    skills: ["Cloud Architecture", "Compute Engine", "IAM", "Cloud Storage"],
+    verifyUrl: "https://www.cloudskillsboost.google/public_profiles/example",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    id: "cert-4",
+    title: "Belajar Dasar Pemrograman JavaScript",
+    issuer: "Dicoding Indonesia",
+    date: "Oktober 2023",
+    credentialId: "DICODING-JS-12093",
+    skills: ["ES6+", "Asynchronous JS", "OOP", "Node.js Environment"],
+    verifyUrl: "https://www.dicoding.com/certificates/example",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    id: "cert-5",
+    title: "Sertifikasi Profesi Pemrogram Junior (Junior Web Developer)",
+    issuer: "BNSP (Badan Nasional Sertifikasi Profesi)",
+    date: "Agustus 2023",
+    credentialId: "BNSP-JWD-88492-2023",
+    skills: ["Web Standards", "Database Relasional", "Clean Code", "Security Basics"],
+    verifyUrl: "https://bnsp.go.id/example",
+    image: "https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    id: "cert-6",
+    title: "Responsive Web Design Certification",
+    issuer: "freeCodeCamp",
+    date: "Juni 2023",
+    credentialId: "FCC-RWD-39102",
+    skills: ["HTML5 Semantics", "CSS3 Flexbox", "CSS Grid", "Media Queries"],
+    verifyUrl: "https://freecodecamp.org/certification/example",
+    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=700&q=80",
+  },
+];
+
+export const techStackData = [
+  {
+    category: "Frontend Development",
+    description: "Membangun tampilan antarmuka interaktif, elegan, dan berkinerja tinggi",
+    skills: [
+      { name: "React.js", level: "Lanjutan", icon: "Code2", badgeColor: "from-blue-500 to-cyan-400" },
+      { name: "JavaScript (ES6+)", level: "Lanjutan", icon: "FileCode2", badgeColor: "from-amber-400 to-yellow-500" },
+      { name: "Tailwind CSS", level: "Mahir", icon: "Palette", badgeColor: "from-teal-400 to-blue-500" },
+      { name: "HTML5 & CSS3", level: "Mahir", icon: "Layout", badgeColor: "from-orange-500 to-red-500" },
+      { name: "Framer Motion", level: "Menengah", icon: "Sparkles", badgeColor: "from-purple-500 to-pink-500" },
+      { name: "TypeScript", level: "Dasar-Menengah", icon: "FileCode", badgeColor: "from-blue-600 to-indigo-600" },
+    ],
+  },
+  {
+    category: "Backend & Basis Data",
+    description: "Menghubungkan API, logika server, dan penyimpanan data terstruktur",
+    skills: [
+      { name: "Node.js", level: "Menengah", icon: "Server", badgeColor: "from-emerald-500 to-green-600" },
+      { name: "Express.js", level: "Menengah", icon: "Cpu", badgeColor: "from-slate-400 to-slate-200" },
+      { name: "MySQL", level: "Menengah", icon: "Database", badgeColor: "from-blue-600 to-cyan-600" },
+      { name: "MongoDB", level: "Dasar-Menengah", icon: "Layers", badgeColor: "from-emerald-600 to-teal-500" },
+      { name: "RESTful API", level: "Mahir", icon: "Globe", badgeColor: "from-indigo-500 to-blue-500" },
+    ],
+  },
+  {
+    category: "Tools & Ekosistem",
+    description: "Perangkat kerja untuk kolaborasi, version control, dan deployment",
+    skills: [
+      { name: "Git & GitHub", level: "Mahir", icon: "GitBranch", badgeColor: "from-violet-500 to-purple-600" },
+      { name: "Vite & npm", level: "Mahir", icon: "Zap", badgeColor: "from-amber-500 to-orange-600" },
+      { name: "VS Code", level: "Mahir", icon: "Terminal", badgeColor: "from-blue-500 to-indigo-500" },
+      { name: "Postman", level: "Menengah", icon: "Send", badgeColor: "from-orange-500 to-amber-600" },
+      { name: "Figma", level: "Dasar", icon: "PenTool", badgeColor: "from-rose-500 to-pink-500" },
+      { name: "Vercel / Netlify", level: "Mahir", icon: "Cloud", badgeColor: "from-cyan-400 to-blue-600" },
+    ],
+  },
+];
+
+export const socialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com",
+    username: "@alvarodev",
+    icon: "Github",
+    color: "#ffffff",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com",
+    username: "Alvaro Reinaldi",
+    icon: "Linkedin",
+    color: "#0a66c2",
+  },
+  {
+    name: "Instagram",
+    url: "https://instagram.com",
+    username: "@alvaro.codes",
+    icon: "Instagram",
+    color: "#e1306c",
+  },
+  {
+    name: "Email",
+    url: "mailto:alvaro.dev@example.com",
+    username: "alvaro.dev@example.com",
+    icon: "Mail",
+    color: "#2c67ed",
+  },
+  {
+    name: "Discord",
+    url: "https://discord.com",
+    username: "alvaro#2026",
+    icon: "MessageSquare",
+    color: "#5865f2",
+  },
+];

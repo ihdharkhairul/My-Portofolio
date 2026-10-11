@@ -12,6 +12,9 @@ export default function Starfield() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.innerWidth < 768;
+
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
@@ -20,26 +23,26 @@ export default function Starfield() {
 
     window.addEventListener('resize', handleResize);
 
-    // Star data
-    const STAR_COUNT = Math.floor((width * height) / 3800);
     let stars = [];
-
     function initStars() {
       stars = [];
-      const count = Math.min(Math.floor((width * height) / 3500), 400);
+      // Fluid star count optimized for mobile performance
+      const maxStars = isMobile ? 120 : 320;
+      const count = Math.min(Math.floor((width * height) / 4500), maxStars);
+
       for (let i = 0; i < count; i++) {
         stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: Math.random() * 1.8 + 0.3,
+          size: Math.random() * (isMobile ? 1.4 : 1.8) + 0.3,
           baseAlpha: Math.random() * 0.7 + 0.3,
           twinkleSpeed: Math.random() * 0.03 + 0.008,
           twinklePhase: Math.random() * Math.PI * 2,
-          color: Math.random() > 0.4 
+          color: Math.random() > 0.45 
             ? '#ffffff' 
             : Math.random() > 0.5 
-              ? '#93c5fd' // light blue
-              : '#38bdf8', // cyan
+              ? '#93c5fd' 
+              : '#38bdf8',
           speedY: Math.random() * 0.15 + 0.02,
         });
       }
@@ -50,15 +53,18 @@ export default function Starfield() {
     // Shooting stars / Meteors
     let meteors = [];
     const spawnMeteor = () => {
-      if (Math.random() < 0.015 && meteors.length < 3) {
+      const spawnChance = isMobile ? 0.008 : 0.016;
+      const maxMeteors = isMobile ? 1 : 3;
+
+      if (Math.random() < spawnChance && meteors.length < maxMeteors) {
         meteors.push({
           x: Math.random() * width * 1.2,
           y: Math.random() * height * 0.4,
-          length: Math.random() * 80 + 50,
-          speed: Math.random() * 8 + 6,
-          angle: (Math.PI / 4) + (Math.random() * 0.2 - 0.1), // roughly 45 degrees
+          length: Math.random() * (isMobile ? 60 : 90) + 40,
+          speed: Math.random() * 7 + 5,
+          angle: (Math.PI / 4) + (Math.random() * 0.2 - 0.1),
           alpha: 1,
-          thickness: Math.random() * 2 + 1,
+          thickness: Math.random() * 1.6 + 0.8,
         });
       }
     };
@@ -69,17 +75,38 @@ export default function Starfield() {
     let targetMouseY = mouseY;
 
     const handleMouseMove = (e) => {
+      if (isMobile) return; // Avoid mouse calculations on touch/mobile
       targetMouseX = e.clientX;
       targetMouseY = e.clientY;
     };
-    window.addEventListener('mousemove', handleMouseMove);
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    }
+
+    // Static render for reduced motion
+    if (prefersReducedMotion) {
+      ctx.clearRect(0, 0, width, height);
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = star.color;
+        ctx.globalAlpha = star.baseAlpha;
+        ctx.fill();
+      }
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        if (!isMobile) window.removeEventListener('mousemove', handleMouseMove);
+      };
+    }
 
     const render = () => {
-      // Lerp mouse
-      mouseX += (targetMouseX - mouseX) * 0.03;
-      mouseY += (targetMouseY - mouseY) * 0.03;
-      const offsetX = (mouseX - width / 2) * 0.015;
-      const offsetY = (mouseY - height / 2) * 0.015;
+      if (!isMobile) {
+        mouseX += (targetMouseX - mouseX) * 0.03;
+        mouseY += (targetMouseY - mouseY) * 0.03;
+      }
+      const offsetX = isMobile ? 0 : (mouseX - width / 2) * 0.012;
+      const offsetY = isMobile ? 0 : (mouseY - height / 2) * 0.012;
 
       ctx.clearRect(0, 0, width, height);
 
@@ -88,7 +115,6 @@ export default function Starfield() {
         star.twinklePhase += star.twinkleSpeed;
         const alpha = star.baseAlpha * (0.6 + 0.4 * Math.sin(star.twinklePhase));
 
-        // Subtle slow vertical drift
         star.y -= star.speedY;
         if (star.y < 0) {
           star.y = height;
@@ -102,12 +128,13 @@ export default function Starfield() {
         ctx.arc(renderX, renderY, star.size, 0, Math.PI * 2);
         ctx.fillStyle = star.color;
         ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
-        ctx.shadowBlur = star.size > 1.2 ? 6 : 0;
-        ctx.shadowColor = '#60a5fa';
+        if (!isMobile && star.size > 1.3) {
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = '#60a5fa';
+        }
         ctx.fill();
+        ctx.shadowBlur = 0;
       }
-
-      ctx.shadowBlur = 0;
 
       // Handle meteors
       spawnMeteor();
@@ -132,7 +159,7 @@ export default function Starfield() {
 
         m.x += Math.cos(m.angle) * m.speed;
         m.y += Math.sin(m.angle) * m.speed;
-        m.alpha -= 0.012;
+        m.alpha -= 0.014;
 
         if (m.alpha <= 0 || m.x < -100 || m.x > width + 200 || m.y > height + 200) {
           meteors.splice(i, 1);
@@ -148,40 +175,40 @@ export default function Starfield() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      if (!isMobile) window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden w-full h-full max-w-full">
       {/* Deep Space Background Layer */}
       <div className="absolute inset-0 bg-[#02050f]" />
 
-      {/* Cosmic Nebula Glow Overlays */}
+      {/* Cosmic Nebula Glow Overlays - scaled responsibly */}
       <div 
-        className="absolute -top-40 left-1/4 w-[600px] h-[600px] rounded-full blur-[140px] opacity-25 pointer-events-none animate-nebula"
+        className="absolute -top-32 sm:-top-40 left-1/4 w-[280px] sm:w-[500px] md:w-[600px] h-[280px] sm:h-[500px] md:h-[600px] rounded-full blur-[100px] sm:blur-[140px] opacity-25 pointer-events-none animate-nebula max-w-[90vw]"
         style={{ background: 'radial-gradient(circle, #2c67ed 0%, transparent 70%)' }}
       />
       <div 
-        className="absolute top-1/2 -right-40 w-[550px] h-[550px] rounded-full blur-[150px] opacity-20 pointer-events-none"
+        className="absolute top-1/2 -right-20 sm:-right-40 w-[260px] sm:w-[450px] md:w-[550px] h-[260px] sm:h-[450px] md:h-[550px] rounded-full blur-[110px] sm:blur-[150px] opacity-20 pointer-events-none max-w-[90vw]"
         style={{ background: 'radial-gradient(circle, #1d4ed8 0%, #4338ca 40%, transparent 75%)' }}
       />
       <div 
-        className="absolute -bottom-32 left-1/3 w-[650px] h-[650px] rounded-full blur-[160px] opacity-20 pointer-events-none"
+        className="absolute -bottom-24 sm:-bottom-32 left-1/3 w-[300px] sm:w-[520px] md:w-[650px] h-[300px] sm:h-[520px] md:h-[650px] rounded-full blur-[120px] sm:blur-[160px] opacity-20 pointer-events-none max-w-[90vw]"
         style={{ background: 'radial-gradient(circle, #0284c7 0%, #2c67ed 40%, transparent 70%)' }}
       />
 
-      {/* Subtle Space Grid Texture for modern cyber-space feel */}
+      {/* Subtle Space Grid Texture */}
       <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
+          backgroundSize: '36px 36px'
         }}
       />
 
       {/* Interactive Stars & Meteors Canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 block w-full h-full" />
+      <canvas ref={canvasRef} className="absolute inset-0 block w-full h-full pointer-events-none" />
     </div>
   );
 }

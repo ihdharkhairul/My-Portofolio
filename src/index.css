@@ -7,29 +7,47 @@
   --color-cosmic-blue: #2c67ed;
   --color-cosmic-dark: #030712;
   --color-cosmic-space: #070d1e;
+  --breakpoint-xs: 420px;
 }
 
 @layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
     color-scheme: dark;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   body {
     background-color: #030712;
     color: #f3f4f6;
     overflow-x: hidden;
+    max-width: 100vw;
     font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, .font-heading {
     font-family: var(--font-heading);
+    letter-spacing: -0.02em;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+}
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 }
 ::-webkit-scrollbar-track {
   background: #030712;
@@ -69,16 +87,16 @@
 @keyframes nebulaPulse {
   0%, 100% {
     transform: scale(1) translate(0, 0);
-    opacity: 0.4;
+    opacity: 0.35;
   }
   50% {
-    transform: scale(1.1) translate(20px, -15px);
-    opacity: 0.6;
+    transform: scale(1.08) translate(15px, -10px);
+    opacity: 0.55;
   }
 }
 
 .animate-nebula {
-  animation: nebulaPulse 12s ease-in-out infinite alternate;
+  animation: nebulaPulse 14s ease-in-out infinite alternate;
 }
 
 /* Shooting star / meteor animation */
@@ -107,10 +125,30 @@
   animation: meteor 4s linear infinite;
 }
 
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-nebula {
+    animation: none !important;
+  }
+
+  .meteor-item {
+    animation: none !important;
+    display: none !important;
+  }
+}
+
 /* Glassmorphism panel */
 .cosmic-card {
   background: rgba(10, 16, 31, 0.65);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(44, 103, 237, 0.18);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -118,5 +156,4 @@
 .cosmic-card:hover {
   border-color: rgba(44, 103, 237, 0.5);
   box-shadow: 0 0 30px rgba(44, 103, 237, 0.22);
-  transform: translateY(-3px);
 }

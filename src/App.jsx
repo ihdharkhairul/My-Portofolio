@@ -13,7 +13,14 @@ export default function App() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'portfolio', 'contact'];
-      const scrollPosition = window.scrollY + 200;
+      const scrollOffset = window.innerWidth < 640 ? 140 : 220;
+      const scrollPosition = window.scrollY + scrollOffset;
+
+      // If scrolled near the bottom, activate contact
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
+        setActiveSection('contact');
+        return;
+      }
 
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
@@ -28,12 +35,12 @@ export default function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#030712] text-slate-100 overflow-x-hidden selection:bg-[#2c67ed]/40 selection:text-white">
+    <div className="relative min-h-screen bg-[#030712] text-slate-100 overflow-x-hidden w-full max-w-full selection:bg-[#2c67ed]/40 selection:text-white">
       {/* Dynamic Cosmic Background: Starfield, Meteors & Nebulae */}
       <Starfield />
 
@@ -41,7 +48,7 @@ export default function App() {
       <Navbar activeSection={activeSection} />
 
       {/* Main Content Area */}
-      <main className="relative z-10 flex flex-col">
+      <main className="relative z-10 flex flex-col w-full max-w-full overflow-x-hidden">
         <Hero />
         <About />
         <Portfolio />

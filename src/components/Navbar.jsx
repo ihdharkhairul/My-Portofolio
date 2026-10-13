@@ -93,7 +93,7 @@ export default function Navbar({ activeSection }) {
               </div>
             </div>
             <span className="font-heading font-bold text-sm xs:text-base sm:text-lg tracking-tight bg-gradient-to-r from-white via-slate-100 to-[#93c5fd] bg-clip-text text-transparent">
-              Alvaro<span className="text-[#38bdf8]">.dev</span>
+              MKI<span className="text-[#38bdf8]">.dev</span>
             </span>
           </a>
 

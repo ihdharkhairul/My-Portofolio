@@ -1,18 +1,19 @@
+import fotoProfil from "../assets/foto-profil.jpg";
 export const personalData = {
-  name: "Alvaro Reinaldi",
-  title: "Junior Developer & Space Tech Explorer",
+  name: "Muhammad Khairul Ihdhar",
+  title: "Softaware Developer & Space Tech Explorer",
   roles: [
-    "Junior Developer",
+    "Software Developer",
     "Tech Enthusiast",
     "Frontend Explorer",
     "Creative Problem Solver"
   ],
   bio: "Seorang pengembang web pemula yang bersemangat menjelajahi cakrawala teknologi modern. Senang merakit antarmuka web yang interaktif, cepat, dan responsif dengan perhatian tinggi terhadap estetika dan pengalaman pengguna. Terus belajar dan bertumbuh dalam ekosistem JavaScript, React, dan arsitektur web modern.",
-  location: "Jakarta, Indonesia 🌏",
+  location: "Bandung, Indonesia 🌏",
   availability: "Terbuka untuk Magang, Junior Role & Freelance",
-  avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80", // High quality portrait with modern aesthetic
+  avatarUrl: fotoProfil,
   resumeUrl: "#",
-  email: "alvaro.dev@example.com",
+  email: "ihdharkhairul@gmail.com",
 };
 
 export const statsData = [
@@ -59,9 +60,9 @@ export const educationData = [
   },
   {
     id: "edu-3",
-    institution: "SMK Negeri 1 Jakarta",
+    institution: "SMA Negeri 6 Buton Tengah",
     degree: "Rekayasa Perangkat Lunak (RPL)",
-    period: "2019 - 2022",
+    period: "2022 - 2025",
     grade: "Lulusan Terbaik Jurusan RPL",
     description: "Mempelajari dasar algoritma pemrograman, OOP, HTML/CSS, JavaScript dasar, MySQL, dan pemeliharaan software.",
     badge: "Sekolah Menengah Kejuruan",

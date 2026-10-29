@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Send, FolderGit2, Mail } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, InstagramIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsappIcon } from './Icons';
 import { personalData, socialLinks } from '../data/portfolioData';
 
 export default function Hero() {
@@ -55,16 +55,8 @@ export default function Hero() {
   return (
     <section 
       id="home" 
-      className="relative min-h-[92vh] sm:min-h-screen flex flex-col items-center justify-center pt-24 sm:pt-32 pb-16 sm:pb-24 px-3 xs:px-4 sm:px-6 lg:px-8 overflow-hidden w-full max-w-full"
+      className="relative flex flex-col items-center justify-center pt-24 sm:pt-32 pb-6 sm:pb-8 px-3 xs:px-4 sm:px-6 lg:px-8 overflow-hidden w-full max-w-full"
     >
-      {/* Decorative Cosmic Elements in Hero Background */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] xs:w-[320px] sm:w-[500px] md:w-[680px] h-[260px] xs:h-[320px] sm:h-[500px] md:h-[680px] rounded-full border border-[#2c67ed]/15 pointer-events-none -z-10 animate-[spin_60s_linear_infinite] max-w-[92vw] max-h-[92vw]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-cyan-400 shadow-[0_0_12px_#38bdf8]" />
-      </div>
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] xs:w-[230px] sm:w-[360px] md:w-[460px] h-[180px] xs:h-[230px] sm:h-[360px] md:h-[460px] rounded-full border border-dashed border-[#2c67ed]/25 pointer-events-none -z-10 animate-[spin_40s_linear_infinite_reverse] max-w-[90vw] max-h-[90vw]">
-        <div className="absolute bottom-0 right-1/4 w-2 h-2 rounded-full bg-[#2c67ed] shadow-[0_0_10px_#2c67ed]" />
-      </div>
-
       <div className="w-full max-w-4xl mx-auto text-center z-10 flex flex-col items-center">
         {/* Status Badge */}
         <motion.div
@@ -172,29 +164,12 @@ export default function Hero() {
                 {item.icon === 'Linkedin' && <LinkedinIcon className="w-4 h-4" />}
                 {item.icon === 'Instagram' && <InstagramIcon className="w-4 h-4" />}
                 {item.icon === 'Mail' && <Mail className="w-4 h-4" />}
+                {item.icon === 'Whatsapp' && <WhatsappIcon className="w-4 h-4" />}
               </a>
             );
           })}
         </motion.div>
       </div>
-
-      {/* Floating Scroll Indicator - visible on larger heights */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="hidden md:flex absolute bottom-5 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 cursor-pointer text-slate-400 hover:text-white transition-colors"
-        onClick={() => scrollToSection('about')}
-      >
-        <span className="text-[10px] font-mono tracking-widest uppercase text-slate-400">Scroll Down</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="w-7 h-11 rounded-full border border-[#2c67ed]/40 flex items-start justify-center p-1 shadow-[0_0_12px_rgba(44,103,237,0.25)]"
-        >
-          <div className="w-1.5 h-2 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

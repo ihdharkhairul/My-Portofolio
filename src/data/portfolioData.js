@@ -1,14 +1,14 @@
 import fotoProfil from "../assets/foto-profil.jpg";
 export const personalData = {
   name: "Muhammad Khairul Ihdhar",
-  title: "Softaware Developer & Space Tech Explorer",
+  title: "Software Engineer & AI Explorer",
   roles: [
-    "Software Developer",
-    "Tech Enthusiast",
-    "Frontend Explorer",
+    "Software Engineer",
+    "Web Developer",
+    "AI Engineer",
     "Creative Problem Solver"
   ],
-  bio: "Seorang pengembang web pemula yang bersemangat menjelajahi cakrawala teknologi modern. Senang merakit antarmuka web yang interaktif, cepat, dan responsif dengan perhatian tinggi terhadap estetika dan pengalaman pengguna. Terus belajar dan bertumbuh dalam ekosistem JavaScript, React, dan arsitektur web modern.",
+  bio: "Aspiring Software Engineer and Smart City Information Systems student at Telkom University. I enjoy building interactive, responsive web applications and exploring how AI and modern technologies can solve real-world problems. Always curious and eager to learn, I’m constantly building projects, improving my skills, and discovering new ways to turn ideas into useful digital solutions that make everyday life smarter and better.",
   location: "Bandung, Indonesia 🌏",
   availability: "Terbuka untuk Magang, Junior Role & Freelance",
   avatarUrl: fotoProfil,
@@ -18,12 +18,12 @@ export const personalData = {
 
 export const statsData = [
   {
-    number: "15+",
+    number: "5+",
     label: "Project Selesai",
     desc: "Aplikasi web & mobile",
   },
   {
-    number: "25+",
+    number: "18+",
     label: "Repositori GitHub",
     desc: "Open source & personal",
   },
@@ -309,10 +309,10 @@ export const socialLinks = [
     color: "#2c67ed",
   },
   {
-    name: "Discord",
-    url: "https://discord.com",
-    username: "alvaro#2026",
-    icon: "MessageSquare",
-    color: "#5865f2",
+name: "WhatsApp",
+url: "https://wa.me/6281234567890?text=...",
+username: "+62 812-3456-7890",
+icon: "Whatsapp",
+color: "#25d366",
   },
 ];

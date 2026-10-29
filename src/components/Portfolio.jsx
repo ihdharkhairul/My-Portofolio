@@ -84,9 +84,6 @@ export default function Portfolio() {
       id="portfolio" 
       className="relative py-20 sm:py-24 px-3 xs:px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full scroll-mt-20 sm:scroll-mt-24"
     >
-      {/* Background Cosmic Glow */}
-      <div className="absolute top-1/3 right-0 w-72 sm:w-[450px] h-72 sm:h-[450px] bg-[#2c67ed]/10 rounded-full blur-[150px] pointer-events-none -z-10 max-w-[80vw]" />
-
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
         <motion.div
@@ -121,10 +118,10 @@ export default function Portfolio() {
         </motion.p>
       </div>
 
-      {/* Main Tabs Navigation */}
-      <div className="w-full max-w-xl mx-auto mb-8 sm:mb-12 px-1">
-        <div className="p-1 sm:p-1.5 rounded-2xl sm:rounded-full bg-[#070e22]/90 backdrop-blur-xl border border-[#2c67ed]/30 shadow-[0_0_25px_rgba(44,103,237,0.22)] overflow-x-auto scrollbar-none">
-          <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 min-w-max sm:min-w-0 w-full px-1 py-0.5">
+      {/* Main Tabs Navigation (icon only) */}
+      <div className="w-full max-w-[260px] sm:max-w-xs mx-auto mb-8 sm:mb-12 px-1">
+        <div className="p-1 sm:p-1.5 rounded-full bg-[#070e22]/90 backdrop-blur-xl border border-[#2c67ed]/30">
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2 w-full px-1 py-0.5">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -132,27 +129,22 @@ export default function Portfolio() {
                 <button
                   key={tab.id}
                   type="button"
+                  aria-label={tab.label}
+                  title={tab.label}
                   onClick={() => setActiveTab(tab.id)}
                   className={`
-                    relative flex-1 sm:flex-initial shrink-0 flex items-center justify-center gap-2 px-3.5 xs:px-4 sm:px-5 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap
-                    ${isActive 
-                      ? 'text-white' 
-                      : 'text-slate-400 hover:text-white'
-                    }
+                    relative flex-1 flex items-center justify-center py-3 rounded-full transition-all duration-300 cursor-pointer
+                    ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'}
                   `}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activePortfolioTab"
-                      className="absolute inset-0 rounded-xl sm:rounded-full bg-gradient-to-r from-[#2c67ed] to-[#1e40af] shadow-[0_0_20px_rgba(44,103,237,0.6)] -z-10"
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2c67ed] to-[#1e40af] -z-10"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
-                  <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-cyan-300' : 'text-slate-400'}`} />
-                  <span>{tab.label}</span>
-                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono shrink-0 ${isActive ? 'bg-white/20 text-white' : 'bg-white/5 text-slate-400'}`}>
-                    {tab.count}
-                  </span>
+                  <Icon className={`w-6 h-6 shrink-0 ${isActive ? 'text-cyan-300' : 'text-slate-300'}`} />
                 </button>
               );
             })}

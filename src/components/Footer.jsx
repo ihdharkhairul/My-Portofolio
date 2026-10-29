@@ -1,6 +1,7 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Rocket, ArrowUp, Mail } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, InstagramIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsappIcon } from './Icons';
 import { personalData, socialLinks } from '../data/portfolioData';
 
 export default function Footer() {
@@ -48,6 +49,7 @@ export default function Footer() {
                 {item.icon === 'Linkedin' && <LinkedinIcon className="w-4 h-4" />}
                 {item.icon === 'Instagram' && <InstagramIcon className="w-4 h-4" />}
                 {item.icon === 'Mail' && <Mail className="w-4 h-4" />}
+                {item.icon === 'Whatsapp' && <WhatsappIcon className="w-4 h-4" />}
               </a>
             ))}
 

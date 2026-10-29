@@ -11,7 +11,7 @@ import {
   Check, 
   Clock 
 } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, InstagramIcon, DiscordIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsappIcon } from './Icons';
 import confetti from 'canvas-confetti';
 import { personalData, socialLinks } from '../data/portfolioData';
 
@@ -192,7 +192,7 @@ export default function Contact() {
                       {item.icon === 'Linkedin' && <LinkedinIcon className="w-3.5 h-3.5" />}
                       {item.icon === 'Instagram' && <InstagramIcon className="w-3.5 h-3.5" />}
                       {item.icon === 'Mail' && <Mail className="w-3.5 h-3.5" />}
-                      {item.icon === 'MessageSquare' && <DiscordIcon className="w-3.5 h-3.5" />}
+                      {item.icon === 'Whatsapp' && <WhatsappIcon className="w-3.5 h-3.5" />}
                     </div>
                     <span className="truncate">{item.name}</span>
                   </a>

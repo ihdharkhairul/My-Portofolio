@@ -110,8 +110,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="text-slate-300 text-xs xs:text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-8 sm:mb-10 px-2 sm:px-4"
         >
-          Menjelajahi galaksi teknologi modern, merakit aplikasi web interaktif dengan performa tinggi, 
-          dan mewujudkan ide digital menjadi kenyataan visual yang memukau.
+          Exploring new technologies, building with code, and finding smarter ways to make everyday life better through software and AI.
         </motion.p>
 
         {/* CTA Buttons */}

@@ -30,7 +30,7 @@ export default function About() {
           className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2c67ed]/15 border border-[#2c67ed]/30 text-[#93c5fd] text-[11px] xs:text-xs font-semibold mb-3 sm:mb-4"
         >
           <Sparkles className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
-          <span>Eksplorasi Pribadi & Perjalanan</span>
+          <span>My Developer Journey</span>
         </motion.div>
 
         <motion.h2
@@ -50,7 +50,7 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-slate-300 text-xs xs:text-sm sm:text-base leading-relaxed px-2"
         >
-          Mengenal lebih dekat latar belakang akademis, rekam jejak pengalaman, dan dedikasi saya dalam dunia software engineering.
+            
         </motion.p>
       </div>
 
@@ -64,7 +64,7 @@ export default function About() {
           className="relative w-full flex justify-center items-end overflow-hidden"
         >
           {/* Teks besar samar di belakang foto */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center font-heading font-extrabold uppercase leading-[0.9] tracking-tight text-white/[0.06] select-none pointer-events-none text-[15vw] sm:text-[6rem] md:text-[9rem] lg:text-[11rem]">
+          <div className="absolute inset-0 flex flex-col items-center justify-center font-normal [font-family:'Archivo_Black',sans-serif] uppercase leading-[0.9] tracking-tight bg-gradient-to-b from-white/20 to-white/0 bg-clip-text text-transparent select-none pointer-events-none text-[13vw] sm:text-[5rem] md:text-[7.5rem] lg:text-[10rem]">
             <span>Software</span>
             <span>Engineer</span>
           </div>
@@ -86,10 +86,7 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="relative z-20 -mt-10 sm:-mt-16 flex flex-col items-center text-center max-w-2xl px-2"
         >
-          <div className="inline-flex items-center gap-1.5 bg-[#02050e] border border-[#2c67ed] px-3.5 py-1 rounded-full mb-4">
-            <Flame className="w-3.5 h-3.5 text-amber-400" />
-            <span className="text-[11px] xs:text-xs font-semibold text-slate-100">Passionate</span>
-          </div>
+          <br /><br />
 
           <h3 className="text-2xl xs:text-3xl sm:text-4xl font-heading font-bold text-white mb-1.5">
             {personalData.name}

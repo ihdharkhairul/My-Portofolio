@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { MotionConfig } from 'framer-motion';
 import Starfield from './components/Starfield';
+import ParallaxBackdrop from './components/ParallaxBackdrop';
+import Lightning from './components/Lightning';
+import SectionDivider from './components/SectionDivider';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -40,9 +44,14 @@ export default function App() {
   }, []);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="relative min-h-screen bg-[#030712] text-slate-100 overflow-x-hidden w-full max-w-full selection:bg-[#2c67ed]/40 selection:text-white">
       {/* Dynamic Cosmic Background: Starfield, Meteors & Nebulae */}
       <Starfield />
+
+      {/* Layer efek baru (terpisah, di atas bintang, di belakang konten) */}
+      <ParallaxBackdrop />
+      <Lightning />
 
       {/* Floating Centered Glow Navbar */}
       <Navbar activeSection={activeSection} />
@@ -50,13 +59,17 @@ export default function App() {
       {/* Main Content Area */}
       <main className="relative z-10 flex flex-col w-full max-w-full overflow-x-hidden">
         <Hero />
+        <SectionDivider />
         <About />
+        <SectionDivider />
         <Portfolio />
+        <SectionDivider />
         <Contact />
       </main>
 
       {/* Footer */}
       <Footer />
     </div>
+    </MotionConfig>
   );
 }

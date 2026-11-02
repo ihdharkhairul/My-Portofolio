@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { fx, byColumn } from '../animations';
 import { 
   FolderGit2, 
   Award, 
@@ -87,10 +88,7 @@ export default function Portfolio() {
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          {...fx.scaleDown(0)}
           className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2c67ed]/15 border border-[#2c67ed]/30 text-[#93c5fd] text-[11px] xs:text-xs font-semibold mb-3 sm:mb-4"
         >
           <Sparkles className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
@@ -98,20 +96,14 @@ export default function Portfolio() {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          {...fx.blurRight(0.1)}
           className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-white tracking-tight mb-3 sm:mb-4"
         >
           Galeri <span className="bg-gradient-to-r from-white via-[#93c5fd] to-[#2c67ed] bg-clip-text text-transparent">Portfolio</span>
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          {...fx.clipUp(0.2)}
           className="text-slate-300 text-xs xs:text-sm sm:text-base leading-relaxed px-2"
         >
           Eksplorasi proyek-proyek inovatif yang telah saya selesaikan, lisensi sertifikasi resmi, serta persenjataan teknologi yang saya gunakan sehari-hari.
@@ -157,10 +149,10 @@ export default function Portfolio() {
         {activeTab === 'projects' && (
           <motion.div
             key="tab-projects"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.35 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="w-full"
           >
             {/* Category Filter Pills (Auto-wrap responsive layout without horizontal scroll) */}
@@ -190,10 +182,8 @@ export default function Portfolio() {
               {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.06 }}
-                  className="group rounded-3xl overflow-hidden bg-[#070e22]/80 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 shadow-[0_0_20px_rgba(44,103,237,0.08)] hover:shadow-[0_0_35px_rgba(44,103,237,0.25)] transition-all duration-300 flex flex-col justify-between w-full h-auto"
+                  {...byColumn(index, (index % 3) * 0.1)}
+                  className="group rounded-3xl overflow-hidden bg-[#070e22]/80 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 shadow-[0_0_20px_rgba(44,103,237,0.08)] hover:shadow-[0_0_35px_rgba(44,103,237,0.25)] transition-[border-color,box-shadow] duration-300 flex flex-col justify-between w-full h-auto"
                 >
                   {/* Thumbnail Preview */}
                   <div className="relative aspect-[16/9] overflow-hidden bg-slate-900 w-full shrink-0">
@@ -294,19 +284,17 @@ export default function Portfolio() {
         {activeTab === 'certificates' && (
           <motion.div
             key="tab-certificates"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.35 }}
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.04 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 w-full"
           >
             {certificatesData.map((cert, index) => (
               <motion.div
                 key={cert.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="group rounded-3xl overflow-hidden bg-[#070e22]/80 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 shadow-[0_0_20px_rgba(44,103,237,0.08)] hover:shadow-[0_0_35px_rgba(44,103,237,0.22)] transition-all flex flex-col justify-between w-full h-auto"
+                {...(index % 2 === 0 ? fx.clipLeft((index % 3) * 0.08) : fx.clipUp((index % 3) * 0.08))}
+                className="group rounded-3xl overflow-hidden bg-[#070e22]/80 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 shadow-[0_0_20px_rgba(44,103,237,0.08)] hover:shadow-[0_0_35px_rgba(44,103,237,0.22)] transition-[border-color,box-shadow] flex flex-col justify-between w-full h-auto"
               >
                 <div>
                   {/* Certificate Image Banner */}
@@ -393,15 +381,16 @@ export default function Portfolio() {
         {activeTab === 'techstack' && (
           <motion.div
             key="tab-techstack"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.35 }}
+            initial={{ opacity: 0, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, filter: 'blur(10px)' }}
+            transition={{ duration: 0.4 }}
             className="space-y-5 sm:space-y-8 w-full min-w-0 max-w-full"
           >
-            {techStackData.map((categoryGroup) => (
-              <div
+            {techStackData.map((categoryGroup, gi) => (
+              <motion.div
                 key={categoryGroup.category}
+                {...(gi % 2 === 0 ? fx.fromLeft(0, 60) : fx.fromRight(0, 60))}
                 className="p-3.5 xs:p-5 sm:p-7 rounded-2xl xs:rounded-3xl bg-[#070e22]/85 backdrop-blur-md border border-[#2c67ed]/20 shadow-[0_0_25px_rgba(44,103,237,0.1)] w-full min-w-0 max-w-full overflow-hidden"
               >
                 <div className="mb-4 sm:mb-6 min-w-0 max-w-full">
@@ -415,13 +404,17 @@ export default function Portfolio() {
                 </div>
 
                 <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 xs:gap-3 sm:gap-4 w-full min-w-0 max-w-full">
-                  {categoryGroup.skills.map((skill) => {
+                  {categoryGroup.skills.map((skill, si) => {
                     const IconComponent = iconMap[skill.icon] || Code2;
                     return (
                       <motion.div
                         key={skill.name}
+                        initial={{ opacity: 0, scale: 0.7 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.45, delay: (si % 6) * 0.05, ease: [0.22, 1, 0.36, 1] }}
                         whileHover={{ y: -4, scale: 1.02 }}
-                        className="p-2.5 xs:p-3 sm:p-4 rounded-xl xs:rounded-2xl bg-[#040816]/90 border border-white/5 hover:border-[#2c67ed]/50 hover:shadow-[0_0_20px_rgba(44,103,237,0.25)] transition-all flex flex-col items-center justify-between text-center group cursor-default w-full min-w-0 max-w-full overflow-hidden"
+                        className="p-2.5 xs:p-3 sm:p-4 rounded-xl xs:rounded-2xl bg-[#040816]/90 border border-white/5 hover:border-[#2c67ed]/50 hover:shadow-[0_0_20px_rgba(44,103,237,0.25)] transition-[border-color,box-shadow] flex flex-col items-center justify-between text-center group cursor-default w-full min-w-0 max-w-full overflow-hidden"
                       >
                         <div className={`w-9 h-9 xs:w-11 xs:h-11 sm:w-12 sm:h-12 rounded-xl mb-2 flex items-center justify-center bg-gradient-to-tr ${skill.badgeColor} p-[1px] shadow-[0_0_15px_rgba(44,103,237,0.3)] group-hover:shadow-[0_0_25px_rgba(44,103,237,0.6)] shrink-0`}>
                           <div className="w-full h-full bg-[#030712] rounded-[11px] flex items-center justify-center">
@@ -440,7 +433,7 @@ export default function Portfolio() {
                     );
                   })}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         )}

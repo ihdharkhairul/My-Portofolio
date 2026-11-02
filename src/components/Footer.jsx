@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { fx } from '../animations';
 import { Rocket, ArrowUp, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsappIcon } from './Icons';
 import { personalData, socialLinks } from '../data/portfolioData';
@@ -13,7 +14,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-[#2c67ed]/20 bg-[#02050f]/90 backdrop-blur-xl z-10 overflow-hidden w-full">
+    <motion.footer
+      {...fx.clipCenter(0)}
+      viewport={{ once: true, amount: 0.1 }}
+      className="relative border-t border-[#2c67ed]/20 bg-[#02050f]/90 backdrop-blur-xl z-10 overflow-hidden w-full"
+    >
       {/* Ambient glow top line */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#2c67ed]/60 to-transparent pointer-events-none" />
 
@@ -81,6 +86,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

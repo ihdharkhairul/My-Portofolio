@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { fx } from '../animations';
 import { 
   Send, 
   Mail, 
@@ -77,10 +78,7 @@ export default function Contact() {
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          {...fx.fromLeft(0, 60)}
           className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2c67ed]/15 border border-[#2c67ed]/30 text-[#93c5fd] text-[11px] xs:text-xs font-semibold mb-3 sm:mb-4"
         >
           <Sparkles className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
@@ -88,20 +86,14 @@ export default function Contact() {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          {...fx.clipCenter(0.1)}
           className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-white tracking-tight mb-3 sm:mb-4"
         >
           Hubungi <span className="bg-gradient-to-r from-white via-[#93c5fd] to-[#2c67ed] bg-clip-text text-transparent">Saya</span>
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          {...fx.blurScale(0.2)}
           className="text-slate-300 text-xs xs:text-sm sm:text-base leading-relaxed px-2"
         >
           Punya tawaran proyek, peluang magang, atau sekadar ingin menyapa dan berdiskusi teknologi? 
@@ -112,10 +104,7 @@ export default function Contact() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start w-full">
         {/* Contact Info & Socials (5 Cols on Desktop, 1 Col on Mobile) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          {...fx.fromLeft(0.1, 110)}
           className="lg:col-span-5 space-y-5 sm:space-y-6 w-full"
         >
           {/* Direct Communication Card */}
@@ -204,10 +193,7 @@ export default function Contact() {
 
         {/* Contact Form (7 Cols on Desktop, 1 Col on Mobile) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          {...fx.fromRight(0.2, 110)}
           className="lg:col-span-7 w-full"
         >
           <div className="p-5 xs:p-6 sm:p-10 rounded-3xl bg-[#070e22]/85 backdrop-blur-xl border border-[#2c67ed]/30 shadow-[0_0_35px_rgba(44,103,237,0.18)] w-full">

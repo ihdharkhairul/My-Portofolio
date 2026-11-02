@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { fx, onLoad } from '../animations';
 import { Sparkles, Send, FolderGit2, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsappIcon } from './Icons';
 import { personalData, socialLinks } from '../data/portfolioData';
 
 export default function Hero() {
+  // Parallax halus: konten hero bergerak sedikit lebih lambat dari scroll
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 700], [0, 0]);
+
   const roles = personalData.roles;
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
@@ -57,12 +62,11 @@ export default function Hero() {
       id="home" 
       className="relative flex flex-col items-center justify-center pt-24 sm:pt-32 pb-6 sm:pb-8 px-3 xs:px-4 sm:px-6 lg:px-8 overflow-hidden w-full max-w-full"
     >
-      <div className="w-full max-w-4xl mx-auto text-center z-10 flex flex-col items-center">
+      <motion.div style={{ y: heroY }} className="w-full max-w-4xl mx-auto text-center z-10 flex flex-col items-center">
         {/* Status Badge */}
+        <div className="animate-float-slow">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          {...onLoad(fx.scaleUp(0))}
           className="inline-flex items-center gap-2 px-3 xs:px-4 py-1.5 rounded-full bg-[#0a1226]/85 border border-[#2c67ed]/40 text-[#93c5fd] text-[11px] xs:text-xs sm:text-sm font-medium shadow-[0_0_20px_rgba(44,103,237,0.25)] mb-5 sm:mb-6 hover:border-[#2c67ed] transition-colors max-w-[95vw] text-center"
         >
           <span className="relative flex h-2 w-2 shrink-0">
@@ -71,12 +75,11 @@ export default function Hero() {
           </span>
           <span className="truncate">{personalData.availability}</span>
         </motion.div>
+        </div>
 
         {/* Big Name */}
         <motion.h1
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          {...onLoad(fx.clipLeft(0.1))}
           className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold tracking-tight text-white mb-3 sm:mb-4 leading-[1.12] sm:leading-none break-words max-w-full px-2"
         >
           Halo, Saya{' '}
@@ -89,9 +92,7 @@ export default function Hero() {
 
         {/* Typewriter text container */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          {...onLoad(fx.blurRight(0.25))}
           className="min-h-[3.75rem] xs:min-h-[4rem] sm:min-h-[4.5rem] md:min-h-[4rem] flex items-center justify-center mb-4 sm:mb-6 px-2 w-full"
         >
           <p className="text-base xs:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading font-semibold text-slate-200 text-center leading-snug">
@@ -105,9 +106,7 @@ export default function Hero() {
 
         {/* Bio Subheadline */}
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
+          {...onLoad(fx.blurIn(0.4))}
           className="text-slate-300 text-xs xs:text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-8 sm:mb-10 px-2 sm:px-4"
         >
           Exploring new technologies, building with code, and finding smarter ways to make everyday life better through software and AI.
@@ -115,9 +114,7 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
+          {...onLoad(fx.scaleUp(0.5))}
           className="flex flex-col xs:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-12 w-full max-w-sm xs:max-w-none px-4"
         >
           {/* Primary Button */}
@@ -149,10 +146,10 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5"
         >
-          {socialLinks.map((item) => {
+          {socialLinks.map((item, idx) => {
             return (
+              <motion.div key={item.name} {...onLoad(fx.scaleUp(0.7 + idx * 0.09))}>
               <a
-                key={item.name}
                 href={item.url}
                 target="_blank"
                 rel="noreferrer"
@@ -165,10 +162,11 @@ export default function Hero() {
                 {item.icon === 'Mail' && <Mail className="w-4 h-4" />}
                 {item.icon === 'Whatsapp' && <WhatsappIcon className="w-4 h-4" />}
               </a>
+              </motion.div>
             );
           })}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

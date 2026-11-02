@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { fx } from '../animations';
 import { 
   GraduationCap, 
   Briefcase, 
@@ -13,6 +14,16 @@ import {
 import { personalData, statsData, educationData, experienceData } from '../data/portfolioData';
 
 export default function About() {
+  // Parallax untuk blok foto: teks besar & foto bergerak dengan kecepatan berbeda
+  const profileRef = useRef(null);
+  const { scrollYProgress: profileProgress } = useScroll({
+    target: profileRef,
+    offset: ['start end', 'end start'],
+  });
+  const bgTextX = useTransform(profileProgress, [0, 1], ['-4%', '4%']);
+  const bgTextY = useTransform(profileProgress, [0, 1], ['8%', '-8%']);
+  const photoY = useTransform(profileProgress, [0, 1], [24, -24]);
+
   const [activeTimelineTab, setActiveTimelineTab] = useState('experience');
 
   return (
@@ -23,10 +34,7 @@ export default function About() {
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          {...fx.scaleUp(0)}
           className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2c67ed]/15 border border-[#2c67ed]/30 text-[#93c5fd] text-[11px] xs:text-xs font-semibold mb-3 sm:mb-4"
         >
           <Sparkles className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
@@ -34,20 +42,14 @@ export default function About() {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          {...fx.clipLeft(0.1)}
           className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-white tracking-tight mb-3 sm:mb-4"
         >
           About <span className="bg-gradient-to-r from-white via-[#93c5fd] to-[#2c67ed] bg-clip-text text-transparent">Me</span>
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          {...fx.blurIn(0.2)}
           className="text-slate-300 text-xs xs:text-sm sm:text-base leading-relaxed px-2"
         >
             
@@ -57,33 +59,32 @@ export default function About() {
       {/* PROFILE HERO: foto besar di tengah, deskripsi di bawah */}
       <div className="flex flex-col items-center mb-12 sm:mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          ref={profileRef}
+          {...fx.blurScale(0)}
           className="relative w-full flex justify-center items-end overflow-hidden"
         >
           {/* Teks besar samar di belakang foto */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center font-normal [font-family:'Archivo_Black',sans-serif] uppercase leading-[0.9] tracking-tight bg-gradient-to-b from-white/20 to-white/0 bg-clip-text text-transparent select-none pointer-events-none text-[13vw] sm:text-[5rem] md:text-[7.5rem] lg:text-[10rem]">
+          <motion.div style={{ x: bgTextX, y: bgTextY }} className="absolute inset-0 flex flex-col items-center justify-center font-normal [font-family:'Archivo_Black',sans-serif] uppercase leading-[0.9] tracking-tight bg-gradient-to-b from-white/20 to-white/0 bg-clip-text text-transparent select-none pointer-events-none text-[13vw] sm:text-[5rem] md:text-[7.5rem] lg:text-[10rem]">
             <span>Software</span>
             <span>Engineer</span>
-          </div>
+          </motion.div>
 
           {/* Foto transparan, bawahnya memudar halus */}
-          <img
-            src={personalData.avatarUrl}
-            alt={personalData.name}
-            loading="lazy"
-            className="relative z-10 w-72 xs:w-80 sm:w-[24rem] lg:w-[30rem] h-auto object-contain [-webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)] [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-          />
+          <motion.div style={{ y: photoY }} className="relative z-10">
+            <div className="animate-float-slow">
+            <img
+              src={personalData.avatarUrl}
+              alt={personalData.name}
+              loading="lazy"
+              className="relative z-10 w-72 xs:w-80 sm:w-[24rem] lg:w-[30rem] h-auto object-contain [-webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)] [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+            />
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Deskripsi di bawah foto */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          {...fx.blurIn(0)}
           className="relative z-20 -mt-10 sm:-mt-16 flex flex-col items-center text-center max-w-2xl px-2"
         >
           <br /><br />
@@ -129,11 +130,8 @@ export default function About() {
           {statsData.map((stat, idx) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="group p-3.5 xs:p-4 sm:p-5 rounded-2xl bg-[#070e22]/75 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 transition-all flex flex-col justify-between"
+              {...(idx % 2 === 0 ? fx.slideScaleLeft(idx * 0.08) : fx.slideScaleRight(idx * 0.08))}
+              className="group p-3.5 xs:p-4 sm:p-5 rounded-2xl bg-[#070e22]/75 backdrop-blur-md border border-[#2c67ed]/20 hover:border-[#2c67ed]/60 transition-[border-color] flex flex-col justify-between"
             >
               <div className="text-3xl sm:text-4xl font-heading font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-[#2c67ed] mb-1 group-hover:scale-105 transition-transform origin-left">
                 {stat.number}
@@ -215,10 +213,10 @@ export default function About() {
           {activeTimelineTab === 'experience' ? (
             <motion.div
               key="experience-tab"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 50 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="space-y-5 sm:space-y-6 max-w-4xl mx-auto w-full"
             >
               {experienceData.map((exp) => (
@@ -268,10 +266,10 @@ export default function About() {
           ) : (
             <motion.div
               key="education-tab"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="space-y-5 sm:space-y-6 max-w-4xl mx-auto w-full"
             >
               {educationData.map((edu) => (
